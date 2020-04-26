@@ -35,17 +35,25 @@ class shadowCallbackContainer:
 clientId="RaspberryPi"
 thingName="RaspberryPi"
 myAWSIoTMQTTShadowClient = AWSIoTMQTTShadowClient(clientId)
-myAWSIoTMQTTShadowClient.configureEndpoint("a3embdqzx7199y.iot.us-west-1.amazonaws.com", 8883)
+myAWSIoTMQTTShadowClient.configureEndpoint("a3embdqzx7199y-ats.iot.us-west-1.amazonaws.com", 8883)
 myAWSIoTMQTTShadowClient.configureCredentials("AmazonRootCA1.pem", "RaspberryPi-private.pem.key", "RaspberryPi-certificate.pem.crt")
+
+# AWSIoTMQTTShadowClient connection configuration
+myAWSIoTMQTTShadowClient.configureAutoReconnectBackoffTime(1, 32, 20)
+myAWSIoTMQTTShadowClient.configureConnectDisconnectTimeout(10) # 10 sec
+myAWSIoTMQTTShadowClient.configureMQTTOperationTimeout(5) # 5 sec
 
 # Connect to AWS IoT
 myAWSIoTMQTTShadowClient.connect()
-
+myAWSIoTMQTTShadowClient.publish("this/info", "connected", 0)
 deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName(thingName, True)
 shadowCallbackContainer_Bot = shadowCallbackContainer(deviceShadowHandler)
 
 # # Listen on deltas
 # deviceShadowHandler.shadowRegisterDeltaCallback(shadowCallbackContainer_Bot.customShadowCallback_Delta)
+
+# Delete current shadow JSON doc
+deviceShadowHandler.shadowDelete(customShadowCallback_Delete, 5)
 
 # Loop forever
 while True:
