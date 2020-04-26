@@ -35,7 +35,7 @@ class shadowCallbackContainer:
 clientId="RaspberryPi"
 thingName="RaspberryPi"
 myAWSIoTMQTTShadowClient = AWSIoTMQTTShadowClient(clientId)
-myAWSIoTMQTTShadowClient.configureEndpoint("a3embdqzx7199y-ats.iot.us-west-1.amazonaws.com", 8883)
+myAWSIoTMQTTShadowClient.configureEndpoint("a3embdqzx7199y.iot.us-west-1.amazonaws.com", 8883)
 myAWSIoTMQTTShadowClient.configureCredentials("AmazonRootCA1.pem", "RaspberryPi-private.pem.key", "RaspberryPi-certificate.pem.crt")
 
 # Connect to AWS IoT
