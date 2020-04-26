@@ -36,7 +36,7 @@ clientId="RaspberryPi"
 thingName="RaspberryPi"
 myAWSIoTMQTTShadowClient = AWSIoTMQTTShadowClient(clientId)
 myAWSIoTMQTTShadowClient.configureEndpoint("a3embdqzx7199y-ats.iot.us-west-1.amazonaws.com", 8883)
-myAWSIoTMQTTShadowClient.configureCredentials("~/Developer/industrial_watchdog/raspi/cert/rootAmazonCA1.pem", "~/Developer/industrial_watchdog/raspi/cert/RaspberryPi-private.pem.key", "~/Developer/industrial_watchdog/raspi/cert/RaspberryPi-certificate.pem.crt")
+myAWSIoTMQTTShadowClient.configureCredentials("~/Developer/industrial_watchdog/raspi/cert/AmazonRootCA1.pem", "~/Developer/industrial_watchdog/raspi/cert/RaspberryPi-private.pem.key", "~/Developer/industrial_watchdog/raspi/cert/RaspberryPi-certificate.pem.crt")
 
 # Connect to AWS IoT
 myAWSIoTMQTTShadowClient.connect()
