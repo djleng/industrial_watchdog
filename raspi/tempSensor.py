@@ -5,12 +5,14 @@ import json
 import argparse
 import busio
 
+from temperature_sensor_simulator import get_temperature_data
+
+
 # Shadow JSON schema:
 #
 # {
 #   "state": {
 #       "desired":{
-#           "moisture":<INT VALUE>,
 #           "temp":<INT VALUE>            
 #       }
 #   }
@@ -102,10 +104,10 @@ myAWSIoTMQTTShadowClient.configureConnectDisconnectTimeout(10) # 10 sec
 myAWSIoTMQTTShadowClient.configureMQTTOperationTimeout(5) # 5 sec
 
 # Initialize Raspberry Pi's I2C interface
-i2c_bus = busio.I2C(SCL, SDA)
+#i2c_bus = busio.I2C(SCL, SDA)
 
 # Intialize SeeSaw, Adafruit's Circuit Python library
-ss = Seesaw(i2c_bus, addr=0x36)
+#ss = Seesaw(i2c_bus, addr=0x36)
 
 # Connect to AWS IoT
 myAWSIoTMQTTShadowClient.connect()
@@ -120,17 +122,19 @@ deviceShadowHandler.shadowDelete(customShadowCallback_Delete, 5)
 while True:
 
     # read moisture level through capacitive touch pad
-    moistureLevel = ss.moisture_read()
+    #moistureLevel = ss.moisture_read()
 
     # read temperature from the temperature sensor
-    temp = ss.get_temp()
+    #temp = ss.get_temp()
+
+    temp = get_temperature_data()
 
     # Display moisture and temp readings
-    print("Moisture Level: {}".format(moistureLevel))
+    #print("Moisture Level: {}".format(moistureLevel))
     print("Temperature: {}".format(temp))
     
     # Create message payload
-    payload = {"state":{"reported":{"moisture":str(moistureLevel),"temp":str(temp)}}}
+    payload = {"state":{"reported":{"temp":str(temp)}}}
 
     # Update shadow
     deviceShadowHandler.shadowUpdate(json.dumps(payload), customShadowCallback_Update, 5)

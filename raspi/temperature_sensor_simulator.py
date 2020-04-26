@@ -13,14 +13,14 @@ def get_temperature_data():
     for i in range(step_count+1):
         temp[i+1] = temp[i] + rate * dt
     
-    return temp
+    return 74
 
-def __main__():
-    dat = get_temperature_data()
-    print(*dat, sep=", ")
+#def __main__():
+#    dat = get_temperature_data()
+#    print(*dat, sep=", ")
 
 
-if __name__ == '__main__':
-    __main__()
+#if __name__ == '__main__':
+#    __main__()
    
         
