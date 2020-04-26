@@ -3,7 +3,7 @@ import logging
 import time
 import json
 import argparse
-import busio
+#import busio
 
 from temperature_sensor_simulator import get_temperature_data
 
