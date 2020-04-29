@@ -45,7 +45,7 @@ myAWSIoTMQTTShadowClient.configureMQTTOperationTimeout(5) # 5 sec
 
 # Connect to AWS IoT
 myAWSIoTMQTTShadowClient.connect()
-myAWSIoTMQTTShadowClient.publish("this/info", "connected", 0)
+#myAWSIoTMQTTShadowClient.publish("this/info", "connected", 0)
 deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName(thingName, True)
 shadowCallbackContainer_Bot = shadowCallbackContainer(deviceShadowHandler)
 
@@ -69,3 +69,4 @@ while True:
     # Update shadow
     deviceShadowHandler.shadowUpdate(json.dumps(payload), customShadowCallback_Update, 5)
     time.sleep(1)
+
