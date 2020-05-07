@@ -1,0 +1,2 @@
+endpoint:     "endpointAddress": "a3embdqzx7199y-ats.iot.us-west-1.amazonaws.com"
+
