@@ -1,8 +1,8 @@
-EE250 Final Project: Industrial Watchdog
+E250 Final Project: Industrial Watchdog
 Rana Eltahir
 Daniel Leng
 
-Demo Link:
+Demo Link: https://drive.google.com/file/d/1yX4tW-rvRVoJNP4D6cuvU0r19317ns_1/view?usp=sharing
 
 Nodes: Raspberry Pi transmitting temperature data, AWS MQTT, Client-side data processing & visualization
 
