@@ -1,5 +1,9 @@
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
+import logging
+import time
+import json
 from temperature_sensor_simulator import get_temperature_data
+
 
 # Custom MQTT message callback
 
