@@ -4,31 +4,34 @@ import ast
 import numpy as np
 import matplotlib.pyplot as plt
 import random as ran
+import time
+import json
+import logging
 
 #################################################
 # Data Processing & Visualization Demonstration #
 #################################################
-dx = 1
-x = np.arange(1, 3601, dx)
-# log to represent annealing curve of quartz
-y = np.log(x)
+# dx = 1
+# x = np.arange(1, 3601, dx)
+# # log to represent annealing curve of quartz
+# y = np.log(x)
 
-# perterbate the system
-for i in np.nditer(x, op_flags=['readwrite']):
-    i[...] = i + ran.uniform(0.0, 200.0)
+# # perterbate the system
+# for i in np.nditer(x, op_flags=['readwrite']):
+#     i[...] = i + ran.uniform(0.0, 200.0)
 
-# data processing
-y_avg = np.mean(y.reshape(-1, 5), axis=1)
-x_avg = np.arange(0, 3600, 5)
+# # data processing
+# y_avg = np.mean(y.reshape(-1, 5), axis=1)
+# x_avg = np.arange(0, 3600, 5)
 
-# visualize
-plt.plot(x, y*60 + 400, label="original")
-plt.plot(x_avg, y_avg*60+400, label="avg")
-# plt.plot(x,y_ema, label = "ema")
-plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-plt.ylabel('Temperature(F)')
-plt.xlabel('Time (min)')
-plt.show()
+# # visualize
+# plt.plot(x, y*60 + 400, label="original")
+# plt.plot(x_avg, y_avg*60+400, label="avg")
+# # plt.plot(x,y_ema, label = "ema")
+# plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+# plt.ylabel('Temperature(F)')
+# plt.xlabel('Time (min)')
+# plt.show()
 ###########################################################
 ###########################################################
 data = np.zeros(shape=(3600,))
@@ -71,7 +74,7 @@ myAWSIoTMQTTClient.configureMQTTOperationTimeout(5)  # 5 sec
 myAWSIoTMQTTClient.connect()
 
 
-myAWSIoTMQTTClient.subscribe("info/test", 1, customCallback)
+myAWSIoTMQTTClient.subscribe("thermocouple/temp", 1, customCallback)
 
 
 while True:

@@ -89,7 +89,7 @@ myAWSIoTMQTTClient.connect()
 # Delete current shadow JSON doc
 # deviceShadowHandler.shadowDelete(customShadowCallback_Delete, 5)
 
-myAWSIoTMQTTClient.subscribe("info/test", 1, customCallback)
+myAWSIoTMQTTClient.subscribe("thermocouple/temp", 1, customCallback)
 # myAWSIoTMQTTClient.subscribeAsync(
 #     "info/test", 1, ackCallback=customSubackCallback)
 time.sleep(2)
@@ -105,7 +105,7 @@ while True:
         # message['count'] = loopCount
         messageJson = json.dumps(message)
         myAWSIoTMQTTClient.publishAsync(
-            "info/test", messageJson, 1, ackCallback=customPubackCallback)
+            "thermocouple/temp", messageJson, 1, ackCallback=customPubackCallback)
         # loopCount += 1
         time.sleep(6)
 
